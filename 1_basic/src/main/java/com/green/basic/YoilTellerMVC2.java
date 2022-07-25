@@ -18,7 +18,7 @@ public class YoilTellerMVC2 {
 	}
 	
 	@RequestMapping("/getYoilMVC2") // url 연결
-	public String main(Mydate date, Model model) throws IOException {
+	public String main(MyDate date, Model model) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
 		if(!isValid(date)) {
@@ -36,7 +36,7 @@ public class YoilTellerMVC2 {
 	    return "yoil";
     }
 
-	private boolean isValid(Mydate date) {
+	private boolean isValid(MyDate date) {
 		return isValid(date.getYear(), date.getMonth(), date.getDay());
 	}
 	
@@ -44,7 +44,7 @@ public class YoilTellerMVC2 {
 		return true;
 	}
 
-	private char getYoil(Mydate date) {
+	private char getYoil(MyDate date) {
 		Calendar cal = Calendar.getInstance();
 	    cal.set(date.getYear(), date.getMonth() - 1, date.getDay());
 	    
