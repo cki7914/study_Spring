@@ -10,23 +10,28 @@ public class User {
 	private String pwd;
 	private String name;
 	private String email;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;
 	private String[] sns;
 	private String[] hobby;
-	
+
 	public String[] getHobby() {
 		return hobby;
 	}
+
+
 	public void setHobby(String[] hobby) {
 		this.hobby = hobby;
 	}
-	public String[] getSns() {
-		return sns;
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", birth=" + birth + ", sns="
+				+ Arrays.toString(sns) + ", hobby=" + Arrays.toString(hobby) + "]";
 	}
-	public void setSns(String[] sns) {
-		this.sns = sns;
-	}
+
+
 	public String getId() {
 		return id;
 	}
@@ -51,16 +56,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String[] getSns() {
+		return sns;
+	}
+
+	public void setSns(String[] sns) {
+		this.sns = sns;
+	}
+
 	public Date getBirth() {
 		return birth;
 	}
 	public void setBirth(Date birth) {
 		this.birth = birth;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", birth=" + birth + ", sns="
-				+ Arrays.toString(sns) + ", hobby=" + Arrays.toString(hobby) + "]";
 	}
 }

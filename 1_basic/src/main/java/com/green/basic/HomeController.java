@@ -1,5 +1,7 @@
 package com.green.basic;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 
-// 1. ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//1. ¿ø°Ý È£Ãâ °¡´ÉÇÑ ÇÁ·Î±×·¥À¸·Î µî·Ï
 @Controller
 public class HomeController {
 	
@@ -22,9 +24,12 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	// 2. URLï¿½ï¿½ ï¿½Å¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(mapping)
+	
+	//URL°ú ¸Þ¼­µå ¿¬°á(¸ÊÇÎ)
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+
+		
 		return "index";
 	}
 	

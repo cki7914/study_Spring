@@ -1,44 +1,53 @@
 package com.green.basic;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller // í”„ë¡œê·¸ë¨ ë“±ë¡
+@Controller //ÇÁ·Î±×·¥ µî·Ï
 public class YoilTeller {
-	@RequestMapping("/getYoil")
-	public static void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // 1. ì…ë ¥
-    String year = request.getParameter("year");
-    String month = request.getParameter("month");
-    String day = request.getParameter("day");
+	
+	@RequestMapping("/getYoil") //url¿¬°á
+    public void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		// 1. ÀÔ·Â
+		// Äõ¸®½ºÆ®¸µ¿¡¼­ ³Ñ¾î¿Â ÀÔ·Â°ªÀ» ¹ŞÀ½
+        String year = request.getParameter("year");
+        String month = request.getParameter("month");
+        String day = request.getParameter("day");
+        
+        // 2. Ã³¸®
+        // ÀÔ·Â°ªÀ» ÀÛ¾÷
+        int yyyy = Integer.parseInt(year);
+        int mm = Integer.parseInt(month);
+        int dd = Integer.parseInt(day);
 
-    int yyyy = Integer.parseInt(year);
-    int mm = Integer.parseInt(month);
-    int dd = Integer.parseInt(day);
+        Calendar cal = Calendar.getInstance();
+        cal.set(yyyy, mm - 1, dd);
 
-    // 2. ì²˜ë¦¬
-    Calendar cal = Calendar.getInstance();
-    cal.set(yyyy, mm - 1, dd);
-
-    int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-    char yoil = " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
-    
-    response.setContentType("text/html");
-    response.setCharacterEncoding("UTF-8");
-
-    // 3. ì¶œë ¥
-    // System.out.println(year + "ï¿½ï¿½ " + month + "ï¿½ï¿½ " + day + "ï¿½ï¿½ï¿½ï¿½ ");
-    // System.out.println(yoil + "ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
-    
-    PrintWriter out = response.getWriter();
-    out.println(year + "ë…„ " + month + "ì›” " + day + "ì¼ì€ ");
-    out.println(yoil + "ìš”ì¼ì…ë‹ˆë‹¤.");
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        char yoil = " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+        
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+        
+        // 3. Ãâ·Â
+        //°á°ú¸¦ Ãâ·Â
+       
+        PrintWriter out = response.getWriter();
+        
+        out.println(year + "³â " + month + "¿ù " + day + "ÀÏÀº ");
+        out.println(yoil + "¿äÀÏÀÔ´Ï´Ù.");
     }
 }
+
+
+
+
+

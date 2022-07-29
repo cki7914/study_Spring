@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+
 	@GetMapping("/list")
 	public String list(HttpServletRequest request) {
-		if(!loginCheck(request))
-			return "redirect:/login/login?toURL=" + request.getRequestURL();
+		
+		if(!loginCheck(request)) 
+			return "redirect:/login/login?toURL=" + request.getRequestURL();					
 		
 		return "boardList";
 	}
 
 	private boolean loginCheck(HttpServletRequest request) {
-		// 1. ì„¸ì…˜ì„ ì–»ì–´ì˜´
+		//1. ¼¼¼ÇÀ» ¾ò¾î¿È
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("id") != null)
-//			return true;
-//		else
-//			return false;
 		
+				
 		return session.getAttribute("id") != null;
 	}
+	
+	
 }

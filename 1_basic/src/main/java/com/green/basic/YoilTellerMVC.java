@@ -1,5 +1,6 @@
 package com.green.basic;
 
+
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -9,43 +10,64 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller // í”„ë¡œê·¸ë¨ ë“±ë¡
+@Controller //ÇÁ·Î±×·¥ µî·Ï
 public class YoilTellerMVC {
-	@ExceptionHandler
+	
+	@ExceptionHandler(Exception.class)
 	public String catcher(Exception ex) {
 		ex.printStackTrace();
 		return "yoilError";
 	}
 	
-	@RequestMapping("/getYoilMVC") // url ì—°ê²°
-	public ModelAndView main(@RequestParam(required = true) int year,@RequestParam(required = true) int month,@RequestParam(required = true) int day) throws IOException {
+	//¸Å°³º¯¼ö·Î °ªÀ» ³Ñ°Ü¹Ş°í ºä·Î Àü´ŞÇÒ ¸ğµ¨ ¸Å°³º¯¼ö·Î ¼±¾ğÇÔ
+	@RequestMapping("/getYoilMVC") //url¿¬°á
+    public ModelAndView main(@RequestParam(required=true) int year, 
+    						@RequestParam(required=true) int month, 
+    						@RequestParam(required=true) int day) throws IOException {
+		
 		ModelAndView mv = new ModelAndView();
 		
-//		if(!isValid(year, month, day))
-//			return "yoilError"; // /WEB-INF/views/yoilError.jsp
+		//°ª ÀÔ·Â¿¡ ´ëÇÑ À¯È¿¼º°Ë»ç
+		//if(!isValid(year, month, day)) {
+		//	return "yoilError"; //   /WEB-INF/views/yoilError.jsp
+		//}
 		
-	    char yoil = getYoil(year, month, day);
-	    
-	    mv.addObject("year", year);
-	    mv.addObject("month", month);
-	    mv.addObject("day", day);
-	    mv.addObject("yoil", yoil);
-	    
-	    // ë³´ì—¬ì£¼ê³ ì‹¶ì€ ë·° ì§€ì •
-//	    return "yoil"; // /WEB-INF/views/yoil.jsp
-	    mv.setViewName("yoil");
-	    return mv;
+		//½ÇÁ¦ Ã³¸® ¸Ş¼­µå È£Ãâ
+        char yoil = getYoil(year, month, day);
+        
+        //Ã³¸®ÇÑ °á°ú¸¦ model·Î ÀúÀå
+        mv.addObject("year",year);
+        mv.addObject("month",month);
+        mv.addObject("day",day);
+        mv.addObject("yoil",yoil);
+        
+        //
+        mv.setViewName("yoil");
+        
+        return mv;
+        
+        //º¸¿©ÁÖ°í ½ÍÀº ºä ÁöÁ¤
+        //return "yoil";   //   /WEB-INF/views/yoil.jsp
+        
     }
 
+	//À¯È¿¼º °Ë»ç¸¦ À§ÇÑ ¸Ş¼­µå
 	private boolean isValid(int year, int month, int day) {
+		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	//Ã³¸® ´ã´ç ¸Ş¼­µå
 	private char getYoil(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
-	    cal.set(year, month - 1, day);
-	    
-	    int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-	    return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
+        cal.set(year, month - 1, day);
+
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
 	}
-} // class
+}
+
+
+
+
+

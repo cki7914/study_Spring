@@ -26,6 +26,9 @@ public class MyDate {
 	
 	@Override
 	public String toString() {
-		return "Mydate [year=" + year + ", month=" + month + ", day=" + day + "]";
+		return "MyDate [year=" + year + ", month=" + month + ", day=" + day + "]";
 	}
+	
+	
+	
 }
